@@ -21,12 +21,12 @@ def step_impl(context):
 
 @when('I go to the home page')
 def step_impl(context):
-    context.driver.get("http://serverlx:8090")
+    context.driver.get("http://localhost:8090")
 
 
 @then('I am redirected to the login page')
 def step_impl(context):
-    expected = 'http://serverlx:8090/login'
+    expected = 'http://localhost:8090/login'
     url = context.driver.current_url
     evaluate(context.driver, url, expected)
 
@@ -62,7 +62,7 @@ def step_impl(context):
 
 @then('I am redirected to the chat room page')
 def step_impl(context):
-    expected = 'http://serverlx:8090/room'
+    expected = 'http://localhost:8090/room'
     url = context.driver.current_url
     evaluate(context.driver, url, expected)
 

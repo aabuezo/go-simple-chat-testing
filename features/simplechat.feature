@@ -6,15 +6,23 @@ Feature: Login page
         Then I am redirected to the login page
         Then I can see the 'Simple Chat' title at the top
 
-    Scenario: Verify that I can login successfully with correct credentials
+    Scenario Outline: Verify that I can login successfully with correct credentials
         Given I am a valid Simple Chat user
         And I launch the Chrome browser
         When I go to the home page
-        And I provide a valid username
-        And I provide a valid password
+        And I provide a valid "<username>" and "<password>"
         And I click the Login button
         Then I am redirected to the chat room page
         And I close Chrome browser
+    
+    Examples:
+        | username  | password |
+        | John      | password |
+        | Anna      | password |
+        | Barney    | password |
+        | Janeth    | password |
+        | Luka      | password |
+        | Stacey    | password |
 
     Scenario: Verify that I cannot login successfully with incorrect password
         Given I am a valid Simple Chat user

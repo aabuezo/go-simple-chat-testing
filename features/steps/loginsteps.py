@@ -14,7 +14,7 @@ def step_impl(context):
 
 @then(u'I am redirected to the login page')
 def step_impl(context):
-    url = context.driver.url
+    url = context.driver.current_url
     print(f"login page: {url}")
     assert url == 'http://serverlx:8090/login'
 
@@ -28,6 +28,12 @@ def step_impl(context):
 @given(u'I am a valid Simple Chat user')
 def step_impl(context):
     pass
+
+
+@when('I provide a valid "{username}" and "{password}"')
+def step_impl(context, username, password):
+    context.driver.find_element(By.ID, "username").send_keys(username)
+    context.driver.find_element(By.ID, "password").send_keys(password)
 
 
 @when(u'I provide a valid username')
@@ -49,7 +55,7 @@ def step_impl(context):
 
 @then(u'I am redirected to the chat room page')
 def step_impl(context):
-    url = context.driver.url
+    url = context.driver.current_url
     print(url)
     assert url == 'http://serverlx:8090/room'
 

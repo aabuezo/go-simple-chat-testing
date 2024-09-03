@@ -9,8 +9,7 @@ def evaluate(driver, got, expected):
         assert got == expected
     except:
         driver.close()
-        print(f"Expected: {expected}")
-        assert False, "Test FAILED"
+        assert False, f"Expected: `{expected}`, but got `{got}`. Test FAILED."
 
 
 @given('I launch the Chrome browser')
@@ -35,7 +34,7 @@ def step_impl(context):
 @then('I can see the Simple Chat title at the top')
 def step_impl(context):
     expected = 'Simple Chat'
-    title = context.driver.find_element(By.TAG_NAME, "h1").text
+    title = context.driver.find_element(By.TAG_NAME, "h2").text
     evaluate(context.driver, title, expected)
 
 

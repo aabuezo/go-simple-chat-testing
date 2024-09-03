@@ -2,6 +2,17 @@ from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+
+def evaluate(driver, got, expected):
+    print(f"Got: {got}")
+    try:
+        assert got == expected
+    except:
+        driver.close()
+        print(f"Expected: {expected}")
+        assert False, "Test FAILED"
+
+
 @given('I launch the Chrome browser')
 def step_impl(context):
     chrome_options = webdriver.ChromeOptions()
@@ -16,15 +27,16 @@ def step_impl(context):
 
 @then('I am redirected to the login page')
 def step_impl(context):
+    expected = 'http://serverlx:8090/login'
     url = context.driver.current_url
-    print(f"login page: {url}")
-    assert url == 'http://serverlx:8090/login'
+    evaluate(context.driver, url, expected)
 
 
-@then('I can see the \'Simple Chat\' title at the top')
+@then('I can see the Simple Chat title at the top')
 def step_impl(context):
+    expected = 'Simple Chat'
     title = context.driver.find_element(By.TAG_NAME, "h1").text
-    assert title == 'Simple Chat'
+    evaluate(context.driver, title, expected)
 
 
 @when('I provide a valid "{username}" and "{password}"')
@@ -51,9 +63,9 @@ def step_impl(context):
 
 @then('I am redirected to the chat room page')
 def step_impl(context):
+    expected = 'http://serverlx:8090/room'
     url = context.driver.current_url
-    print(url)
-    assert url == 'http://serverlx:8090/room'
+    evaluate(context.driver, url, expected)
 
 
 @then('I close Chrome browser')
@@ -75,5 +87,6 @@ def step_impl(context):
 
 @then('I get \'Invalid username or password\'')
 def step_impl(context):
+    expected = 'Invalid username or password'
     text = context.driver.find_element(By.TAG_NAME, "pre").text
-    assert text == 'Invalid username or password'
+    evaluate(context.driver, text, expected)

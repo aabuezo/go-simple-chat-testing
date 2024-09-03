@@ -6,7 +6,7 @@ Feature: Login page
 
     Scenario: Verify login page in Simple Chat web page
         Then I am redirected to the login page
-        And I can see the 'Simple Chat' title at the top
+        And I can see the Simple Chat title at the top
 
     Scenario Outline: Verify that I can login successfully with correct credentials
         When I provide a valid "<username>" and "<password>"

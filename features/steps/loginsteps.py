@@ -34,7 +34,7 @@ def step_impl(context):
 @then('I can see the Simple Chat title at the top')
 def step_impl(context):
     expected = 'Simple Chat'
-    title = context.driver.find_element(By.TAG_NAME, "h2").text
+    title = context.driver.find_element(By.TAG_NAME, "h1").text
     evaluate(context.driver, title, expected)
 
 

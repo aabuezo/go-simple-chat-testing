@@ -25,11 +25,6 @@ def step_impl(context):
     assert title == 'Simple Chat'
 
 
-@given(u'I am a valid Simple Chat user')
-def step_impl(context):
-    pass
-
-
 @when('I provide a valid "{username}" and "{password}"')
 def step_impl(context, username, password):
     context.driver.find_element(By.ID, "username").send_keys(username)
@@ -69,11 +64,6 @@ def step_impl(context):
 def step_impl(context):
     wrong_password = 'wrong_password'
     context.driver.find_element(By.ID, "password").send_keys(wrong_password)
-
-
-@given(u'I am not a valid Simple Chat user')
-def step_impl(context):
-    pass
 
 
 @when(u'I provide an invalid username')

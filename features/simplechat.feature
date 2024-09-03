@@ -24,7 +24,7 @@ Feature: Login page
         | Stacey    | password |
 
     Scenario: Verify that I cannot login successfully with incorrect password
-        When I provide a valid username
+        When I provide a valid username "<John>"
         And I provide an invalid password
         And I click the Login button
         Then I get 'Invalid username or password'
